@@ -11,7 +11,7 @@ if ($employee) {
     $hire_date = $employee['hire_date'];
     $job_title = $employee['job_title'];
     $department_id = $employee['department_id'];
-    $salary = $employee['salary'];
+    // $salary = $employee['salary'];
 } else {
     echo "Không tìm thấy nhân viên với ID: $employee_id";
 }
@@ -71,10 +71,10 @@ if ($employee) {
                     </select>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="salary">Mức lương</label>
                     <input class="form-control" type="number" name="salary" id="salary" value="<?php echo $salary; ?>" step="0.01" required>
-                </div>
+                </div> -->
 
                 <button type="submit" class="btn btn-primary">Cập nhật</button>
             </form>

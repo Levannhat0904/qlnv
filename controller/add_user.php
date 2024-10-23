@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hire_date = $_POST['hire_date'];
     $job_title = $_POST['job_title'];
     $department_id = $_POST['department'];
-    $salary = $_POST['salary'];
-    addEmployee($full_name, $email, $phone_number, $hire_date, $job_title, $department_id, $salary);
+    // $salary = $_POST['salary'];
+    addEmployee($full_name, $email, $phone_number, $hire_date, $job_title, $department_id);
 
     // echo $str;
     // Thông báo đã thêm nhân viên thành công

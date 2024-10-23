@@ -21,7 +21,7 @@ if (!isset($conn)) {
 }
 //================================================================================================================================
 // Hàm Thêm Nhân Viên
-function addEmployee($full_name, $email, $phone_number, $hire_date, $job_title, $department_id, $salary)
+function addEmployee($full_name, $email, $phone_number, $hire_date, $job_title, $department_id)
 {
     // return "sffdsfdsf";
     global $conn;
@@ -30,8 +30,8 @@ function addEmployee($full_name, $email, $phone_number, $hire_date, $job_title, 
     }
     // echo "<script>alert('Kết nối rất thành công!');</script>";
     // $conn = connectDatabase();
-    $sql = "INSERT INTO Employees (full_name, email, phone_number, hire_date, job_title, department_id, salary)
-            VALUES ('$full_name', '$email', '$phone_number', '$hire_date', '$job_title', $department_id, $salary)";
+    $sql = "INSERT INTO Employees (full_name, email, phone_number, hire_date, job_title, department_id)
+            VALUES ('$full_name', '$email', '$phone_number', '$hire_date', '$job_title', $department_id)";
     // return $sql;
     // return "ksdjdjs";
     if ($conn->query($sql) === TRUE) {
@@ -293,6 +293,29 @@ function updateDepartment($id, $department_name, $location)
         echo "<div class='alert alert-danger'>Có lỗi xảy ra: " . mysqli_error($conn) . "</div>";
     }
 }
+function deleteDepartmentById($department_id)
+{
+    global $conn; // Sử dụng biến kết nối toàn cục
+
+    // Kiểm tra xem employee_id có hợp lệ không
+    if (!empty($department_id)) {
+        // Chuẩn bị câu truy vấn SQL để xóa nhân viên
+        $sql = "DELETE FROM Departments WHERE department_id = '$department_id'";
+
+        // Thực thi câu truy vấn
+        if ($conn->query($sql) === TRUE) {
+            echo "<script>
+            alert('Xoá phòng thành công!');
+            window.location.href = '../../?view=list-department';
+        </script>";
+            exit();
+        } else {
+            return "Lỗi: " . $conn->error;
+        }
+    } else {
+        return "ID phòng ban không hợp lệ.";
+    }
+}
 // =============================================
 // lương
 function addSalary($employee_id, $month_year, $basic_salary, $allowance)
@@ -307,7 +330,7 @@ function addSalary($employee_id, $month_year, $basic_salary, $allowance)
     if (mysqli_query($conn, $sql)) {
         echo "<script>
                 alert('Thêm lương nhân viên thành công!');
-                window.location.href = '../../?view=list-department';
+                window.location.href = '../../?view=list-salary';
             </script>";
     } else {
         echo "<div class='alert alert-danger'>Có lỗi xảy ra: " . mysqli_error($conn) . "</div>";

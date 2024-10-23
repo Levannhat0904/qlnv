@@ -31,7 +31,7 @@ if (!empty($search_query)) {
                         <th>Số điện thoại</th>
                         <th>Chức vụ</th>
                         <th>Phòng ban</th>
-                        <th>Mức lương</th>
+                        <!-- <th>Mức lương</th> -->
                         <th>Ngày tuyển dụng</th>
                         <th>Tác vụ</th>
                     </tr>
@@ -48,7 +48,7 @@ if (!empty($search_query)) {
                             echo "<td>" . $employee['phone_number'] . "</td>";
                             echo "<td>" . $employee['job_title'] . "</td>";
                             echo "<td>" . getDepartmentName($employee['department_id']) . "</td>";
-                            echo "<td>" . number_format($employee['salary'], 2) . "</td>";
+                            // echo "<td>" . number_format($employee['salary'], 2) . "</td>";
                             echo "<td>" . date('d-m-Y', strtotime($employee['hire_date'])) . "</td>";
                             echo "<td>
                                     <a href='?view=edit-user&id={$employee['employee_id']}' class='btn btn-success btn-sm rounded-0 text-white'><i class='fa fa-edit'></i></a>

@@ -12,10 +12,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hire_date = $_POST['hire_date'];
     $job_title = $_POST['job_title'];
     $department = $_POST['department'];
-    $salary = $_POST['salary'];
+    // $salary = $_POST['salary'];
 
     // Kiểm tra xem dữ liệu có đủ không
-    if (!empty($full_name) && !empty($email) && !empty($hire_date) && !empty($job_title) && !empty($department) && !empty($salary)) {
+    if (!empty($full_name) && !empty($email) && !empty($hire_date) && !empty($job_title) && !empty($department)) {
 
         // Chuẩn bị câu truy vấn SQL
         $sql = "UPDATE Employees SET 
@@ -24,8 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     phone_number = '$phone_number', 
                     hire_date = '$hire_date', 
                     job_title = '$job_title', 
-                    department_id = '$department', 
-                    salary = '$salary' 
+                    department_id = '$department'
                 WHERE employee_id = '$employee_id'";
 
         // Thực thi câu truy vấn

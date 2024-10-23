@@ -76,7 +76,7 @@ if (!empty($search_query)) {
                                     <td>" . htmlspecialchars($department['location']) . "</td>
                                     <td>
                                         <a href='?view=edit_department&id={$department['department_id']}' class='btn btn-success btn-sm rounded-0 text-white' data-toggle='tooltip' data-placement='top' title='Edit'><i class='fa fa-edit'></i></a>
-                                        <a href='controller/delete_department.php?id={$department['department_id']}' class='btn btn-danger btn-sm rounded-0 text-white' data-toggle='tooltip' data-placement='top' title='Delete'><i class='fa fa-trash'></i></a>
+                                        <a href='controller/department/delete_department.php?id={$department['department_id']}' class='btn btn-danger btn-sm rounded-0 text-white' data-toggle='tooltip' data-placement='top' title='Delete'><i class='fa fa-trash'></i></a>
                                     </td>
                                 </tr>";
                             $index++;
