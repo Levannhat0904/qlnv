@@ -1,0 +1,53 @@
+[
+    {
+        "employee_id": "9",
+        "full_name": "Lê Thị Hồng Nhung",
+        "email": "31levannhat.utt@gmail.com",
+        "phone_number": "0965203734",
+        "hire_date": "1231-02-23",
+        "job_title": "designer",
+        "department_name": "Phòng Kỹ thuật",
+        "location": "Hà Ninh",
+        "base_salary": "12345.00",
+        "basic_salary": "5050000.00",
+        "allowance": "300000.00",
+        "final_salary": "5350000.00",
+        "month_year": "2002-04-05",
+        "leave_days": "30",
+        "salary_type": null
+    },
+    {
+        "employee_id": "8",
+        "full_name": "Lê Văn Nhật",
+        "email": "hiamnhatsdsadz203s@gmail.com",
+        "phone_number": "0965203734",
+        "hire_date": "2321-02-23",
+        "job_title": "designer",
+        "department_name": "Phòng Kinh doanh",
+        "location": "Hà Nam",
+        "base_salary": "2131232.00",
+        "basic_salary": "10000000.00",
+        "allowance": "40000.00",
+        "final_salary": "10040000.00",
+        "month_year": "2024-11-30",
+        "leave_days": "30",
+        "salary_type": null
+    },
+    {
+        "employee_id": "6",
+        "full_name": "CAO THẾ HIỆP",
+        "email": "levadnnhdat.utt@gmail.com",
+        "phone_number": "0965203734",
+        "hire_date": "1312-02-23",
+        "job_title": "developer",
+        "department_name": "Phòng Kỹ thuật",
+        "location": "Hà Ninh",
+        "base_salary": "12312321.00",
+        "basic_salary": "8000000.00",
+        "allowance": "100000.00",
+        "final_salary": "8100000.00",
+        "month_year": "2024-11-20",
+        "leave_days": "30",
+        "salary_type": null
+    }
+]

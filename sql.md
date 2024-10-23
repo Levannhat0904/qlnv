@@ -14,8 +14,7 @@ CREATE TABLE Departments (
 -- Tạo bảng Employees
 CREATE TABLE Employees (
     employee_id INT PRIMARY KEY AUTO_INCREMENT,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
+    full_name VARCHAR(50) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     phone_number VARCHAR(15),
     hire_date DATE NOT NULL,
@@ -95,3 +94,35 @@ employee_id: Mã nhân viên.
 leave_start_date và leave_end_date: Ngày bắt đầu và kết thúc nghỉ.
 leave_type: Loại nghỉ (ví dụ: nghỉ phép, ốm đau).
 reason: Lý do nghỉ.
+
+================================================================
+Cấu trúc bảng Salaries
+sql
+Sao chép mã
+-- Tạo bảng Salaries
+CREATE TABLE Salaries (
+    salary_id INT PRIMARY KEY AUTO_INCREMENT,
+    employee_id INT,
+    month_year DATE NOT NULL,
+    basic_salary DECIMAL(10, 2) NOT NULL,
+    allowance DECIMAL(10, 2) DEFAULT 0.00,
+    final_salary DECIMAL(10, 2) AS (basic_salary + allowance) STORED,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (employee_id) REFERENCES Employees(employee_id)
+);
+Giải thích các trường trong bảng Salaries:
+salary_id: Khóa chính của bảng, tự động tăng, dùng để xác định duy nhất mỗi bản ghi.
+
+employee_id: ID của nhân viên, dùng để liên kết thông tin lương với bảng Employees. Đây là khóa ngoại.
+
+month_year: Trường để lưu ngày áp dụng lương, dùng định dạng DATE để lưu trữ ngày.
+
+basic_salary: Trường để lưu mức lương cơ bản của nhân viên.
+
+allowance: Trường để lưu thông tin phụ cấp. Nếu không có phụ cấp, mặc định là 0.00.
+
+final_salary: Trường tính toán lương cuối cùng dựa trên lương cơ bản và phụ cấp. Trường này sử dụng cú pháp AS để tự động tính toán giá trị khi có sự thay đổi trong basic_salary hoặc allowance.
+
+created_at: Trường để lưu thời gian tạo bản ghi, tự động điền thời gian hiện tại khi bản ghi được thêm mới.
+
+FOREIGN KEY: Khóa ngoại liên kết employee_id với trường employee_id trong bảng Employees.

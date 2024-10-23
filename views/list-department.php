@@ -43,14 +43,14 @@ if (!empty($search_query)) {
             </div>
         </div>
         <div class="card-body">
-            <div class="form-action form-inline py-3">
+            <!-- <div class="form-action form-inline py-3">
                 <select class="form-control mr-1" id="action">
                     <option>Chọn</option>
                     <option>Tác vụ 1</option>
                     <option>Tác vụ 2</option>
                 </select>
                 <input type="submit" name="btn-action" value="Áp dụng" class="btn btn-primary">
-            </div>
+            </div> -->
             <table class="table table-striped table-checkall">
                 <thead>
                     <tr>
@@ -87,7 +87,7 @@ if (!empty($search_query)) {
                     ?>
                 </tbody>
             </table>
-            <nav aria-label="Page navigation example">
+            <!-- <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item">
                         <a class="page-link" href="#" aria-label="Previous">
@@ -103,7 +103,7 @@ if (!empty($search_query)) {
                         </a>
                     </li>
                 </ul>
-            </nav>
+            </nav> -->
         </div>
     </div>
 </div>

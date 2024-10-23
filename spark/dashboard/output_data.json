@@ -1,0 +1,10 @@
+[
+    {
+        "department_name": "Phòng Kinh doanh",
+        "number_of_employees": 3
+    },
+    {
+        "department_name": "Phòng Kỹ thuật",
+        "number_of_employees": 4
+    }
+]

@@ -1,13 +1,13 @@
 <?php
-// $servername = "localhost"; // Địa chỉ máy chủ MySQL
-// $username = "root"; // Tên đăng nhập MySQL
-// $password = ""; // Mật khẩu MySQL
-// $dbname = "employee_management"; // Tên cơ sở dữ liệu
+$servername = "localhost"; // Địa chỉ máy chủ MySQL
+$username = "root"; // Tên đăng nhập MySQL
+$password = ""; // Mật khẩu MySQL
+$dbname = "employee_management"; // Tên cơ sở dữ liệu
 
-$servername = "database-1.cp80m0wgc1ht.ap-southeast-1.rds.amazonaws.com"; // Địa chỉ máy chủ MySQL
-$username = "admin"; // Tên đăng nhập MySQL
-$password = "Levannhat0904?"; // Mật khẩu MySQL
-$dbname = "qlnv"; // Tên cơ sở dữ liệu
+// $servername = "database-1.cp80m0wgc1ht.ap-southeast-1.rds.amazonaws.com"; // Địa chỉ máy chủ MySQL
+// $username = "admin"; // Tên đăng nhập MySQL
+// $password = "Levannhat0904?"; // Mật khẩu MySQL
+// $dbname = "qlnv"; // Tên cơ sở dữ liệu
 
 // Tạo kết nối
 if (!isset($conn)) {
@@ -98,7 +98,32 @@ function getEmployeeById($employee_id)
         return null; // Trả về null nếu không có nhân viên nào với ID tương ứng
     }
 }
-function deleteEmployeeById($employee_id) {
+function getEmployeesSortedByName()
+{
+    global $conn; // Sử dụng biến kết nối toàn cục
+
+    // Câu truy vấn SQL để lấy danh sách nhân viên và sắp xếp theo tên
+    $sql = "SELECT employee_id, full_name,email FROM Employees ORDER BY full_name ASC";
+
+    // Thực thi truy vấn
+    $result = mysqli_query($conn, $sql);
+
+    // Kiểm tra nếu có dữ liệu trả về
+    $employees = [];
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $employees[] = $row; // Lưu mỗi nhân viên vào mảng $employees
+        }
+    }
+
+    // Đóng kết nối
+    mysqli_close($conn);
+
+    return $employees; // Trả về danh sách nhân viên
+}
+
+function deleteEmployeeById($employee_id)
+{
     global $conn; // Sử dụng biến kết nối toàn cục
 
     // Kiểm tra xem employee_id có hợp lệ không
@@ -112,7 +137,7 @@ function deleteEmployeeById($employee_id) {
                 alert('Xoá nhân viên thành công!');
                 window.location.href = '../?view=list-user';
             </script>";
-        exit();
+            exit();
         } else {
             return "Lỗi: " . $conn->error;
         }
@@ -120,7 +145,8 @@ function deleteEmployeeById($employee_id) {
         return "ID nhân viên không hợp lệ.";
     }
 }
-function searchEmployees($search_query) {
+function searchEmployees($search_query)
+{
     global $conn; // Kết nối cơ sở dữ liệu
 
     // Truy vấn tìm kiếm nhân viên theo tên, email hoặc chức vụ
@@ -231,7 +257,8 @@ function getDepartments()
     return $departments;
 }
 // Hàm lấy thông tin phòng ban theo ID
-function getDepartmentById($id) {
+function getDepartmentById($id)
+{
     global $conn; // Kết nối cơ sở dữ liệu
 
     // Truy vấn SQL để lấy thông tin phòng ban theo department_id
@@ -249,7 +276,8 @@ function getDepartmentById($id) {
         return null; // Trả về null nếu không tìm thấy dữ liệu
     }
 }
-function updateDepartment($id, $department_name, $location) {
+function updateDepartment($id, $department_name, $location)
+{
     global $conn; // Kết nối cơ sở dữ liệu
 
     // Truy vấn cập nhật phòng ban
@@ -265,4 +293,154 @@ function updateDepartment($id, $department_name, $location) {
         echo "<div class='alert alert-danger'>Có lỗi xảy ra: " . mysqli_error($conn) . "</div>";
     }
 }
+// =============================================
+// lương
+function addSalary($employee_id, $month_year, $basic_salary, $allowance)
+{
+    global $conn; // Sử dụng biến kết nối toàn cục
 
+    // Câu lệnh SQL để thêm thông tin lương
+    $sql = "INSERT INTO Salaries (employee_id, month_year, basic_salary, allowance) 
+            VALUES ('$employee_id', '$month_year', '$basic_salary', '$allowance')";
+
+    // Thực thi câu lệnh SQL
+    if (mysqli_query($conn, $sql)) {
+        echo "<script>
+                alert('Thêm lương nhân viên thành công!');
+                window.location.href = '../../?view=list-department';
+            </script>";
+    } else {
+        echo "<div class='alert alert-danger'>Có lỗi xảy ra: " . mysqli_error($conn) . "</div>";
+    }
+
+    // Đóng kết nối
+    mysqli_close($conn);
+}
+function updateSalary($salary_id, $month_year, $basic_salary, $allowance)
+{
+    global $conn; // Kết nối cơ sở dữ liệu
+    $sql = "UPDATE Salaries SET month_year = '$month_year', basic_salary = $basic_salary, allowance = $allowance WHERE salary_id = $salary_id";
+    // Thực hiện truy vấn
+    if (mysqli_query($conn, $sql)) {
+        echo "<script>
+                alert('Chỉnh sửa lương thành công!');
+                window.location.href = '../../?view=list-salary';
+            </script>";
+    } else {
+        echo "<div class='alert alert-danger'>Có lỗi xảy ra: " . mysqli_error($conn) . "</div>";
+    }
+}
+function deleteSalaryById($salary_id)
+{
+    global $conn; // Sử dụng biến kết nối toàn cục
+
+    // Kiểm tra xem employee_id có hợp lệ không
+    if (!empty($salary_id)) {
+        // Chuẩn bị câu truy vấn SQL để xóa nhân viên
+        $sql = "DELETE FROM Salaries WHERE salary_id = '$salary_id'";
+
+        // Thực thi câu truy vấn
+        if ($conn->query($sql) === TRUE) {
+            echo "<script>
+            alert('Xoá lương thành công!');
+            window.location.href = '../../?view=list-salary';
+        </script>";
+            exit();
+        } else {
+            return "Lỗi: " . $conn->error;
+        }
+    } else {
+        return "ID nhân viên không hợp lệ.";
+    }
+}
+function getSalariesWithEmployeeInfo()
+{
+    global $conn; // Sử dụng biến kết nối toàn cục
+
+    // Câu truy vấn để lấy thông tin lương và thông tin nhân viên
+    $sql = "SELECT s.salary_id, e.full_name, e.email, s.month_year, s.basic_salary, s.allowance 
+            FROM Salaries s 
+            JOIN Employees e ON s.employee_id = e.employee_id 
+            ORDER BY e.full_name ASC"; // Sắp xếp theo tên nhân viên
+
+    $result = mysqli_query($conn, $sql);
+
+    $salaries = []; // Mảng lưu thông tin lương
+
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $salaries[] = $row; // Thêm từng hàng vào mảng
+        }
+    } else {
+        echo "Lỗi truy vấn: " . mysqli_error($conn);
+    }
+
+    return $salaries; // Trả về mảng thông tin lương
+}
+function getSalaryBySalaryId($salary_id)
+{
+    global $conn; // Sử dụng biến kết nối toàn cục
+
+    // Câu truy vấn để lấy thông tin lương theo salary_id
+    $sql = "SELECT Salaries.salary_id, Employees.full_name, Employees.email, Salaries.month_year, Salaries.basic_salary, Salaries.allowance 
+            FROM Salaries 
+            JOIN Employees ON Salaries.employee_id = Employees.employee_id 
+            WHERE Salaries.salary_id = $salary_id"; // Truy vấn SQL không có bí danh
+
+    $result = mysqli_query($conn, $sql); // Thực thi câu truy vấn
+
+    $salaryInfo = null; // Biến lưu thông tin lương của nhân viên
+
+    if ($result) {
+        $salaryInfo = mysqli_fetch_assoc($result); // Lấy thông tin lương
+    } else {
+        echo "Lỗi truy vấn: " . mysqli_error($conn);
+    }
+
+    return $salaryInfo; // Trả về thông tin lương của nhân viên
+}
+// =================================================================
+// thống kê 
+function getAllInfo()
+{
+    global $conn; // Sử dụng biến kết nối toàn cục
+
+    // Câu truy vấn để lấy thông tin lương theo salary_id
+    $sql = "SELECT 
+        e.employee_id,
+        e.full_name,
+        e.email,
+        e.phone_number,
+        e.hire_date,
+        e.job_title,
+        d.department_name,
+        d.location,
+        e.salary AS base_salary,
+        s.basic_salary,
+        s.allowance,
+        s.final_salary,
+        s.month_year,
+        e.leave_days,
+        e.salary_type
+    FROM 
+        Employees e
+    JOIN 
+        Departments d ON e.department_id = d.department_id
+    LEFT JOIN 
+        Salaries s ON e.employee_id = s.employee_id ;";
+    // ORDER BY 
+    //     e.employee_id, s.month_year DESC;"; // Truy vấn SQL không có bí danh
+
+    $result = mysqli_query($conn, $sql); // Thực thi câu truy vấn
+    $info_employee = []; // Mảng lưu thông tin lương
+
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $info_employee[] = $row; // Thêm từng hàng vào mảng
+        }
+    } else {
+        echo "Lỗi truy vấn: " . mysqli_error($conn);
+    }
+
+    return $info_employee; // Trả về mảng thông tin lương
+}
