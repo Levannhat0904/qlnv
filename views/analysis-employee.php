@@ -1,13 +1,40 @@
 <?php
-// Lấy từ khóa tìm kiếm (nếu có)
-$search_query = isset($_POST['search_query']) ? $_POST['search_query'] : '';
+// // Lấy từ khóa tìm kiếm (nếu có)
+// $search_query = isset($_POST['search_query']) ? $_POST['search_query'] : '';
 
-// Nếu có từ khóa tìm kiếm, gọi hàm searchEmployees, ngược lại lấy toàn bộ nhân viên
-if (!empty($search_query)) {
-    $employees = searchEmployees($search_query);
-} else {
-    $employees = getEmployees();
+// // Nếu có từ khóa tìm kiếm, gọi hàm searchEmployees, ngược lại lấy toàn bộ nhân viên
+// if (!empty($search_query)) {
+//     $employees = searchEmployees($search_query);
+// } else {
+//     $employees = getEmployees();
+// }
+// Hàm để đọc dữ liệu từ file JSON
+function getEmployeesFromJson() {
+    $jsonData = file_get_contents('spark/dashboard/employee_info.json');
+    return json_decode($jsonData, true); // Trả về mảng dữ liệu
 }
+
+// Hàm tìm kiếm nhân viên từ dữ liệu JSON
+function searchEmployeesFromJson($search_query) {
+    $employees = getEmployeesFromJson();
+    $filteredEmployees = [];
+
+    foreach ($employees as $employee) {
+        if (stripos($employee['name'], $search_query) !== false) {
+            $filteredEmployees[] = $employee;
+        }
+    }
+
+    return $filteredEmployees;
+}
+
+// Kiểm tra điều kiện tìm kiếm
+if (!empty($search_query)) {
+    $employees = searchEmployeesFromJson($search_query);
+} else {
+    $employees = getEmployeesFromJson();
+}
+// print_r($employees);
 ?>
 
 <div id="content" class="container-fluid">
@@ -47,8 +74,10 @@ if (!empty($search_query)) {
                             echo "<td>" . $employee['email'] . "</td>";
                             echo "<td>" . $employee['phone_number'] . "</td>";
                             echo "<td>" . $employee['job_title'] . "</td>";
-                            echo "<td>" . getDepartmentName($employee['department_id']) . "</td>";
-                            echo "<td>" . number_format($employee['salary'], 2) . "</td>";
+                            echo "<td>" . $employee['department_name'] . "</td>";
+                            $amount = (float) ($employee['final_salary'] ?? 0);
+                            $formattedAmount= number_format($amount, 0, ',', '.') . ' ₫';
+                            echo "<td>" . $formattedAmount . "</td>";
                             echo "<td>" . date('d-m-Y', strtotime($employee['hire_date'])) . "</td>";
                             echo "<td>
                                     <a href='?view=edit-user&id={$employee['employee_id']}' class='btn btn-success btn-sm rounded-0 text-white'><i class='fa fa-edit'></i></a>

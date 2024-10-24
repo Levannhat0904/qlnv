@@ -20,7 +20,7 @@ ini_set('display_errors', 1);
             var xValues = jsonData.map(function(item) {
                 return item.full_name;
             });
-
+            console.log(xValues);
             // Chuyển đổi final_salary thành số thực và tính tổng lương cho từng phòng ban
             var yValues = jsonData.map(function(item) {
                 return Number(item.final_salary) || 0; // Chuyển đổi giá trị thành số thực

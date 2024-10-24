@@ -75,7 +75,8 @@
         </a>
         <i class="arrow fas fa-angle-right"></i>
         <ul class="sub-menu">
-            <!-- <li><a href="?view=list-department">Đơn hàng</a></li> -->
+            <li><a href="?view=add-department">Thêm mới</a></li>
+            <li><a href="?view=list-department">Danh sách</a></li>
         </ul>
     </li>
     <li class="nav-link">

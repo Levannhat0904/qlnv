@@ -429,7 +429,33 @@ function getAllInfo()
     global $conn; // Sử dụng biến kết nối toàn cục
 
     // Câu truy vấn để lấy thông tin lương theo salary_id
-    $sql = "SELECT 
+    // ==============
+    // $sql = "SELECT 
+    //     e.employee_id,
+    //     e.full_name,
+    //     e.email,
+    //     e.phone_number,
+    //     e.hire_date,
+    //     e.job_title,
+    //     d.department_name,
+    //     d.location,
+    //     e.salary AS base_salary,
+    //     s.basic_salary,
+    //     s.allowance,
+    //     s.final_salary,
+    //     s.month_year,
+    //     e.leave_days,
+    //     e.salary_type
+    // FROM 
+    //     Employees e
+    // JOIN 
+    //     Departments d ON e.department_id = d.department_id
+    // LEFT JOIN 
+    //     Salaries s ON e.employee_id = s.employee_id ;";
+    // ORDER BY 
+    //     e.employee_id, s.month_year DESC;"; // Truy vấn SQL không có bí danh
+    // ==========
+     $sql = "SELECT 
         e.employee_id,
         e.full_name,
         e.email,
@@ -437,20 +463,17 @@ function getAllInfo()
         e.hire_date,
         e.job_title,
         d.department_name,
-        d.location,
-        e.salary AS base_salary,
+        d.location, 
         s.basic_salary,
         s.allowance,
         s.final_salary,
-        s.month_year,
-        e.leave_days,
-        e.salary_type
+        s.month_year
     FROM 
         Employees e
     JOIN 
         Departments d ON e.department_id = d.department_id
     LEFT JOIN 
-        Salaries s ON e.employee_id = s.employee_id ;";
+        Salaries s ON e.employee_id = s.employee_id;";
     // ORDER BY 
     //     e.employee_id, s.month_year DESC;"; // Truy vấn SQL không có bí danh
 

@@ -19,7 +19,7 @@ ini_set('display_errors', 1);
                         var xValues = jsonData.map(function(item) {
                             return item.department_name;
                         });
-
+                        console.log(xValues);
                         var yValues = jsonData.map(function(item) {
                             return Number(item.number_of_employees) || 0; // Chuyển đổi giá trị sang số
                         });

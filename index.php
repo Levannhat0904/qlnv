@@ -15,7 +15,7 @@ require "include/header.php";
         ?>
         <div id="wp-content">
             <?php
-            $view = isset($_GET['view']) ? $_GET['view'] : 'dashboard';
+            $view = isset($_GET['view']) ? $_GET['view'] : 'analysis-employee';
             require "views/{$view}.php";
             ?>
         </div>

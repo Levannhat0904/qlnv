@@ -13,7 +13,7 @@ df = spark.read.json("../dashboard/employee_info.json", multiLine=True)
 # Lấy 10 nhân viên có lương cao nhất dựa trên cột `final_salary`
 top_10_salaries = df.orderBy(col("final_salary").cast("float").desc()).limit(10)
 
-# Hiển thị kết quả
+# Hiển thị kết quả 
 top_10_salaries.show()
 output_file = "data_analysis.json"  # Đường dẫn tệp đầu ra
 
