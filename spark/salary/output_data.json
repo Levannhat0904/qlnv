@@ -44,7 +44,7 @@
     {
         "allowance": "100000.00",
         "basic_salary": "5600000.00",
-        "department_name": "Phòng Hành chính",
+        "department_name": "Phòng Marketing",
         "email": "Anh@gmail.com",
         "employee_id": "18",
         "final_salary": "5700000.00",
@@ -114,7 +114,7 @@
     {
         "allowance": "100000.00",
         "basic_salary": "5100000.00",
-        "department_name": "Phòng Marketing",
+        "department_name": "Phòng Hành chính",
         "email": "hiamnhatdz203s@gmail.com",
         "employee_id": "13",
         "final_salary": "5200000.00",
