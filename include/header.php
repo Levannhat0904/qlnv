@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/solid.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <base href="http://18.141.201.195/qlnv/">
+    <base href="http://52.77.243.104/qlnv/">
     <!-- <base href="http://localhost/qlvn/"> -->
     <link rel="stylesheet" href="css/style.css">
     <title>Admintrator</title>
