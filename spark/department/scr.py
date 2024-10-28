@@ -4,11 +4,12 @@ from pyspark.sql.functions import col, count
 
 spark = SparkSession.builder \
     .appName("JSON Analysis") \
+    .config("spark.driver.bindAddress", "127.0.0.1")\
     .getOrCreate()
 
 print("Bắt đầu đọc tập tin JSON...================================================================")
 # df = spark.read.json("file:///Applications/XAMPP/xamppfiles/htdocs/qlvn/spark/data_employee.json", multiLine=True)
-df = spark.read.json("employee_info.json", multiLine=True)
+df = spark.read.json("../employee_info.json", multiLine=True)
 # df.printSchema()
 # df.show(50)
 department_count = df.groupBy("department_name").agg(count("employee_id").alias("number_of_employees"))

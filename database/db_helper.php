@@ -376,15 +376,17 @@ function deleteSalaryById($salary_id)
         return "ID nhân viên không hợp lệ.";
     }
 }
-function getSalariesWithEmployeeInfo()
+function getSalariesWithEmployeeInfo($search_query)
 {
     global $conn; // Sử dụng biến kết nối toàn cục
 
     // Câu truy vấn để lấy thông tin lương và thông tin nhân viên
     $sql = "SELECT s.salary_id, e.full_name, e.email, s.month_year, s.basic_salary, s.allowance 
-            FROM Salaries s 
-            JOIN Employees e ON s.employee_id = e.employee_id 
-            ORDER BY e.full_name ASC"; // Sắp xếp theo tên nhân viên
+        FROM Salaries s 
+        JOIN Employees e ON s.employee_id = e.employee_id 
+        WHERE e.full_name LIKE '%$search_query%' 
+           OR e.email LIKE '%$search_query%' 
+        ORDER BY e.full_name ASC";
 
     $result = mysqli_query($conn, $sql);
 

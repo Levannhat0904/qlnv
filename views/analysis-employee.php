@@ -10,7 +10,7 @@
 // }
 // Hàm để đọc dữ liệu từ file JSON
 function getEmployeesFromJson() {
-    $jsonData = file_get_contents('spark/dashboard/employee_info.json');
+    $jsonData = file_get_contents('spark/employee_info.json');
     return json_decode($jsonData, true); // Trả về mảng dữ liệu
 }
 

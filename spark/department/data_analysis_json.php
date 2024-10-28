@@ -3,8 +3,10 @@
 // dữ liệu: nhân viên mỗi phòng ban 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-$directory = 'data_analysis.json'; // Đường dẫn đến thư mục
-$outputFile = 'output_data.json'; // Tệp đầu ra
+// $directory = 'data_analysis.json'; // Đường dẫn đến thư mục
+// $outputFile = 'output_data.json'; // Tệp đầu ra
+$directory = 'department/data_analysis.json'; // Đường dẫn đến thư mục
+$outputFile = 'department/output_data.json'; // Tệp đầu ra
 
 if (is_dir($directory)) {
     $dataList = [];

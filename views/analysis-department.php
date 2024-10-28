@@ -1,7 +1,6 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-// require "database/db_helper.php";
 ?>
 <div class="container-fluid py-5">
     <!-- end analytic  -->
@@ -14,7 +13,7 @@ ini_set('display_errors', 1);
             <script>
                 $(document).ready(function() {
                     // Đọc dữ liệu từ file JSON
-                    $.getJSON('spark/dashboard/output_data.json', function(jsonData) {
+                    $.getJSON('spark/department/output_data.json', function(jsonData) {
                         // Tạo mảng cho các nhãn (tên phòng ban) và số lượng nhân viên
                         var xValues = jsonData.map(function(item) {
                             return item.department_name;

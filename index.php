@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "include/header.php";
 //kết nối db
 // require "database/connect-db.php";

@@ -54,9 +54,6 @@ if (!empty($search_query)) {
             <table class="table table-striped table-checkall">
                 <thead>
                     <tr>
-                        <th>
-                            <input type="checkbox" name="checkall">
-                        </th>
                         <th scope="col">#</th>
                         <th scope="col">Tên phòng ban</th>
                         <th scope="col">Địa điểm</th>
@@ -70,7 +67,7 @@ if (!empty($search_query)) {
                         $index = 1;
                         foreach ($departments as $department) {
                             echo "<tr>
-                                    <td><input type='checkbox'></td>
+                                   
                                     <td>{$index}</td>
                                     <td>" . htmlspecialchars($department['department_name']) . "</td>
                                     <td>" . htmlspecialchars($department['location']) . "</td>

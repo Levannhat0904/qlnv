@@ -1,7 +1,14 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+$search_query = isset($_POST['search_query']) ? $_POST['search_query'] : '';
 // Lấy thông tin lương của từng nhân viên
-$salaries = getSalariesWithEmployeeInfo();
+// Nếu có từ khóa tìm kiếm, gọi hàm searchEmployees, ngược lại lấy toàn bộ nhân viên
+if (!empty($search_query)) {
+    $salaries = getSalariesWithEmployeeInfo($search_query);
+} else {
+    $salaries = getSalariesWithEmployeeInfo($search_query);
+}
 ?>
 
 <div id="content" class="container-fluid">
@@ -9,7 +16,7 @@ $salaries = getSalariesWithEmployeeInfo();
         <div class="card-header font-weight-bold d-flex justify-content-between align-items-center">
             <h5 class="m-0 ">Danh sách lương nhân viên</h5>
             <div class="form-search form-inline">
-                <form action="?view=list-user" method="POST"> <!-- Gửi dữ liệu tìm kiếm qua GET -->
+                <form action="?view=list-salary" method="POST"> <!-- Gửi dữ liệu tìm kiếm qua GET -->
                     <input type="text" class="form-control form-search" name="search_query" placeholder="Tìm kiếm" value="<?php echo isset($search_query) ? $search_query : ''; ?>">
                     <input type="submit" name="btn-search" value="Tìm kiếm" class="btn btn-primary">
                 </form>
@@ -25,6 +32,7 @@ $salaries = getSalariesWithEmployeeInfo();
                         <th>Ngày áp dụng</th>
                         <th>Lương cơ bản</th>
                         <th>Phụ cấp</th>
+                        <th>Tổng</th>
                         <th>Tác vụ</th>
                     </tr>
                 </thead>
@@ -41,6 +49,7 @@ $salaries = getSalariesWithEmployeeInfo();
                             echo "<td>" . $salary['month_year'] . "</td>";
                             echo "<td>" . number_format($salary['basic_salary'], 2) . "</td>";
                             echo "<td>" . number_format($salary['allowance'], 2) . "</td>";
+                            echo "<td>" . number_format(($salary['allowance']+$salary['basic_salary']), 2) . "</td>";
                             echo "<td>
                                     <a href='?view=edit-salary&id={$salary['salary_id']}' class='btn btn-success btn-sm rounded-0 text-white'><i class='fa fa-edit'></i></a>
                                     <a href='controller/salary/delete_salary.php?id={$salary['salary_id']}' class='btn btn-danger btn-sm rounded-0 text-white'><i class='fa fa-trash'></i></a>
