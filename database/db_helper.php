@@ -1,8 +1,15 @@
 <?php
-$servername = "localhost"; // Địa chỉ máy chủ MySQL
-$username = "root"; // Tên đăng nhập MySQL
-$password = ""; // Mật khẩu MySQL
-$dbname = "employee_management"; // Tên cơ sở dữ liệu
+// $servername = "localhost"; // Địa chỉ máy chủ MySQL
+// $username = "root"; // Tên đăng nhập MySQL
+// $password = ""; // Mật khẩu MySQL
+// $dbname = "employee_management"; // Tên cơ sở dữ liệu
+// $dbname = "employee"; // Tên cơ sở dữ liệu
+
+// $servername = "database-1.cp80m0wgc1ht.ap-southeast-1.rds.amazonaws.com"; // Địa chỉ máy chủ MySQL
+// $username = "admin"; // Tên đăng nhập MySQL
+// $password = "Levannhat0904?"; // Mật khẩu MySQL
+// $dbname = "qlnv"; // Tên cơ sở dữ liệu
+// db_hiep
 
 // $servername = "database-1.cp80m0wgc1ht.ap-southeast-1.rds.amazonaws.com"; // Địa chỉ máy chủ MySQL
 // $username = "admin"; // Tên đăng nhập MySQL
